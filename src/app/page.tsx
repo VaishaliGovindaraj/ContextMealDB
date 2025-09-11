@@ -10,8 +10,6 @@ export default function Home() {
   const { user } = useUserContext() as UserContextType
   const [recipeListArray, setRecipeListArray] = useState<RecipeListType[]>([])
 
-
-
   const getCategoryRecipes = async () => {
     try {
       const response = await fetch(`${API_ENDPOINT}filter.php?c=${user?.favouriteCategory}`)

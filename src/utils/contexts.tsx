@@ -1,11 +1,13 @@
 'use client'
 import { createContext,useContext, useState } from "react";
-import { UserType,UserContextType } from "./types";
+import { UserType,UserContextType, CategoryType } from "./types";
 
 const UserContext = createContext<UserContextType | null>(null)
 
 export const UserContextProvider = ({ children } : {children :  React.ReactNode} ) => {
     const [user,setUser] = useState<UserType | null>(null)
+    // const [favCategory, setFavouriteCategory] = useState<CategoryType | null>(null)
+
     return (
         <UserContext.Provider value={{user,setUser}}>
             {children}

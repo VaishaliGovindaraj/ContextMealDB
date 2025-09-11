@@ -10,6 +10,7 @@ const CategoryPage = () => {
 
     const {user,setUser} = useUserContext() as UserContextType
     const [selectedCategory, setSelectedCategory] = useState<CategoryType[]>([])
+    const [booleanCheck, setBooleanCheck] = useState<Boolean>(false)
 
     const getCategories = async () => {
         const response = await fetch(`${API_ENDPOINT}categories.php`);
@@ -35,6 +36,7 @@ const CategoryPage = () => {
     ...prevUser,
     favouriteCategory: category
   }));
+  setBooleanCheck(true)
 };
 
     useEffect(() => {
@@ -51,6 +53,7 @@ const CategoryPage = () => {
                 {/* <Link href={setClickedRecipe(`${API_ENDPOINT}lookup.php?i=${id}`)}>{name}</Link> */}
                 <Link className="text-white font-semibold text-center mb-2" href={`/category/${item.categoryName}`}>Name:{item.categoryName}</Link>
                 <img className="w-40 h-40 object-cover rounded" src={item.categoryImage} alt={item.categoryName} />
+                {<h4>if(booleanCheck) "Toogle On" else "Toggle off"</h4>}
                    <div className="flex-[20%]">
                     <img className={`w-[25%] sm:w-[35%] h-[auto] cursor-pointer m-auto `} onClick={() => favSelected(item.categoryName)} src={ user?.favouriteCategory === item.categoryName ? "favourite_icon.png" : "unfavourite_icon.png"} alt={user?.favouriteCategory === item.categoryName ? `favourite_icon.png ${item.categoryName}` : `unfavourite_icon.png ${item.categoryName}`}></img>
                 </div>

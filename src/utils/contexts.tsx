@@ -6,6 +6,8 @@ const UserContext = createContext<UserContextType | null>(null)
 
 export const UserContextProvider = ({ children } : {children :  React.ReactNode} ) => {
     const [user,setUser] = useState<UserType | null>(null)
+
+    
     // const [favCategory, setFavouriteCategory] = useState<CategoryType | null>(null)
 
     return (

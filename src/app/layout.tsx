@@ -29,14 +29,15 @@ export default function RootLayout({
   return (
     <html lang="en">
       <body
-        className={`${geistSans.variable} ${geistMono.variable} antialiased`}
+        className={"min-h-screen bg-gradient-to-b from-orange-50 via-amber-50 to-white"}
       >
-        <Header />
+
         <UserContextProvider>
-            <LoginWrapper>
-              <Navigation />
-              {children}
-            </LoginWrapper>
+          <Header />
+          <LoginWrapper>
+            <Navigation />
+            {children}
+          </LoginWrapper>
         </UserContextProvider>
       </body>
     </html>

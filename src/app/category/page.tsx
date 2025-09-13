@@ -8,18 +8,17 @@ import { useUserContext } from "@/utils/contexts";
 
 const CategoryPage = () => {
 
-    const {user,setUser} = useUserContext() as UserContextType
+    const { user, setUser } = useUserContext() as UserContextType
     const [selectedCategory, setSelectedCategory] = useState<CategoryType[]>([])
-    const [booleanCheck, setBooleanCheck] = useState<Boolean>(false)
 
     const getCategories = async () => {
         const response = await fetch(`${API_ENDPOINT}categories.php`);
         const data = await response.json();
 
-        const result:CategoryType[] = data.categories.map((item:any) => (
+        const result: CategoryType[] = data.categories.map((item: any) => (
             {
-                categoryName : item.strCategory,
-                categoryImage : item.strCategoryThumb,
+                categoryName: item.strCategory,
+                categoryImage: item.strCategoryThumb,
                 categoryDescription: item.strCategoryDescription
             }
         ))
@@ -27,40 +26,79 @@ const CategoryPage = () => {
         setSelectedCategory(result)
     }
 
-    // const favSelected = (category: string) => {
-    //     setUser( (prev) => ({...prev,favouriteCategory : category}))
-    // }
+    const favSelected = (category: string) => {
+        setUser(prevUser => {
+            if (!prevUser) return prevUser;
 
-   const favSelected = (category: string) => {
-  setUser(prevUser => ({
-    ...prevUser,
-    favouriteCategory: category
-  }));
-  setBooleanCheck(true)
-};
+            const isAlreadyFav = prevUser.favouriteCategory === category;
+
+            return {
+                ...prevUser,
+                favouriteCategory: isAlreadyFav ? null : category
+            };
+        });
+    };
 
     useEffect(() => {
         getCategories()
-    },[])
+    }, [])
 
     return (
         <>
-        { user?.favouriteCategory && <h2>Current Favourite Category : {user.favouriteCategory}</h2>}
-    <div className="grid grid-cols-2 gap-4 items-center justify-center p-4">
-        
-        {selectedCategory.map((item:CategoryType,index:number) =>  <div key={index} className="flex flex-col max-w-[400px] items-center bg-gray-800 rounded-lg p-4 shadow-md hover:scale-105 transition-transform">
-                
-                {/* <Link href={setClickedRecipe(`${API_ENDPOINT}lookup.php?i=${id}`)}>{name}</Link> */}
-                <Link className="text-white font-semibold text-center mb-2" href={`/category/${item.categoryName}`}>Name:{item.categoryName}</Link>
-                <img className="w-40 h-40 object-cover rounded" src={item.categoryImage} alt={item.categoryName} />
-                {<h4>if(booleanCheck) "Toogle On" else "Toggle off"</h4>}
-                   <div className="flex-[20%]">
-                    <img className={`w-[25%] sm:w-[35%] h-[auto] cursor-pointer m-auto `} onClick={() => favSelected(item.categoryName)} src={ user?.favouriteCategory === item.categoryName ? "favourite_icon.png" : "unfavourite_icon.png"} alt={user?.favouriteCategory === item.categoryName ? `favourite_icon.png ${item.categoryName}` : `unfavourite_icon.png ${item.categoryName}`}></img>
-                </div>
-            </div> )
-        }</div>
-        
+            {/* Favourite Category Heading */}
+            {user?.favouriteCategory && (
+                <h2 className="text-xl font-semibold text-center text-amber-950 p-3 mb-6">
+                    Current Favourite Category:{" "}
+                    <span className="text-amber-950">{user.favouriteCategory}</span>
+                </h2>
+            )}
+
+            {/* Category Grid */}
+            <div className="grid grid-cols-1 sm:grid-cols-2 gap-6 mt-6 px-4 max-w-4xl mx-auto w-full majustify-items-center">
+
+                {selectedCategory.map((item: CategoryType, index: number) => (
+                    <div
+                        key={index}
+                        className=" max-w-[800px] flex flex-col items-center bg-gray-700 rounded-2xl p-6 shadow-lg hover:scale-105 transition-transform"
+                    >
+                        {/* Category Name */}
+                        <Link
+                            className="text-white text-lg font-semibold text-center mb-4 hover:underline"
+                            href={`/category/${item.categoryName}`}
+                        >
+                            {item.categoryName}
+                        </Link>
+
+                        {/* Category Image */}
+                        <img
+                            className="w-40 h-40 object-cover rounded-lg shadow-md mb-4"
+                            src={item.categoryImage}
+                            alt={item.categoryName}
+                        />
+
+                        {/* Favourite Icon */}
+                        <div className="flex justify-center mt-2">
+                            <img
+                                className="w-10 h-10 sm:w-12 sm:h-12 cursor-pointer hover:scale-110 transition-transform"
+                                onClick={() => favSelected(item.categoryName)}
+                                src={
+                                    user?.favouriteCategory === item.categoryName
+                                        ? "favourite_icon.png"
+                                        : "unfavourite_icon.png"
+                                }
+                                alt={
+                                    user?.favouriteCategory === item.categoryName
+                                        ? `Favourite ${item.categoryName}`
+                                        : `Not Favourite ${item.categoryName}`
+                                }
+                            />
+                        </div>
+                    </div>
+                ))}
+            </div>
         </>
+
+
     )
 }
 

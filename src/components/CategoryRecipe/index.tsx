@@ -1,42 +1,3 @@
-// import Link from "next/link";
-// import { API_ENDPOINT } from "@/data/endpoint";
-// import { RecipeListType, UserContextType } from "@/utils/types";
-// import { useUserContext } from "@/utils/contexts";
-// import { useState } from "react";
-
-// const CategoryRecipe = ({ id, name, image }: RecipeListType) => {
-//     const {user,setUser} = useUserContext() as UserContextType
-
-
-// const favSelected = (recipeName: string) => {
-//   setUser(prevUser => {
-//     if (!prevUser) return prevUser; // if user is null, skip
-
-//     const currentRecipes = prevUser.favouriteRecipes ?? [];
-//     const isAlreadyFav = currentRecipes.includes(recipeName);
-//   });
-// };
-
-//   return (
-//     <div className="flex flex-col items-center bg-gray-800 rounded-lg p-4 shadow-md hover:scale-105 transition-transform">
-//       <Link href={`/${id}`} className="text-white font-semibold text-center mb-2">
-//         {name}
-//       </Link>
-//       {user?.favouriteRecipes}
-//       <img
-//         src={image}
-//         alt={name}
-//         className="w-40 h-40 object-cover rounded"
-//       />
-//       <div className="flex-[20%]">
-//         <img className={`w-[25%] sm:w-[35%] h-[auto] cursor-pointer m-auto `} onClick={() => favSelected(name)} src={user?.favouriteCategory === name ? "favourite_icon.png" : "unfavourite_icon.png"} alt={favCategory ? `favourite_icon.png ${name}` : `unfavourite_icon.png ${name}`}></img>
-//       </div>
-//     </div>
-//   )
-// }
-
-// export default CategoryRecipe;
-
 'use client'
 
 import Link from "next/link";
@@ -53,6 +14,7 @@ const CategoryRecipe = ({ id, name, image }: RecipeListType) => {
     const currentRecipes = prevUser.favouriteRecipes ?? [];
 
     // Check if the recipe is already favourited by matching IDs
+    // Checks if the recipe has been favourited with the props id and current loop id
     const isAlreadyFav = currentRecipes.some(r => r.id === recipeId);
 
     return {
@@ -66,29 +28,50 @@ const CategoryRecipe = ({ id, name, image }: RecipeListType) => {
   const isFav = user?.favouriteRecipes?.some(r => r.id === id);
 
   return (
-    <div className="flex flex-col items-center bg-gray-800 rounded-lg p-4 shadow-md hover:scale-105 transition-transform">
-      <Link href={`/${id}`} className="text-white font-semibold text-center mb-2">
-        {name}
-      </Link>
+<div className="grid grid-cols-1 gap-6 px-4 mx-auto items-center justify-center">
+  <div className= " max-w-2xl w-[100%] bg-gray-800 rounded-lg p-4 mx-auto mt-4 mb-6 shadow-lg hover:scale-105 transition-transform flex flex-col items-center text-center">
+    {/* Recipe name */}
+    <Link href={`/${id}`} className="text-white text-lg font-semibold mb-3 hover:underline">
+      {name}
+    </Link>
 
-      <img src={image} alt={name} className="w-40 h-40 object-cover rounded" />
+    {/* Recipe image */}
+    <img
+      src={image}
+      alt={name}
+      className="w-48 h-48 object-cover rounded-lg shadow-md mb-3"
+    />
 
-      <div className="flex-[20%]">
-        <img
-          className="w-[25%] sm:w-[35%] h-[auto] cursor-pointer m-auto"
-          onClick={() => favSelected(name,id)}
-          src={isFav ? "favourite_icon.png" : "unfavourite_icon.png"}
-          alt={isFav ? `favourite_icon.png ${name}` : `unfavourite_icon.png ${name}`}
-        />
+    {/* Favourite toggle */}
+    <button
+      className="flex items-center justify-center p-2 rounded-full hover:bg-gray-700 transition"
+      onClick={() => favSelected(name, id)}
+    >
+      <img
+        className="w-8 h-8"
+        src={isFav ? "/favourite_icon.png" : "/unfavourite_icon.png"}
+        alt={isFav ? `Favourite ${name}` : `Not Favourite ${name}`}
+      />
+    </button>
+
+    {/* User favourites list */}
+    {user?.favouriteRecipes?.length ? (
+      <div className="text-white text-sm mt-4 w-full text-center">
+        <p className="font-medium mb-1">Your Favourites:</p>
+        <ul className="list-disc list-inside space-y-1">
+          {user.favouriteRecipes?.map((item, index) => (
+            <li key={index}>{item.recipeName}</li>
+          ))}
+        </ul>
       </div>
+    ) : null}
+  </div>
 
-      {/* Optional Debug UI */}
-      {user?.favouriteRecipes && (
-        <p className="text-white text-sm mt-2">
-          Your Favourites: {user.favouriteRecipes.map((item,index)  => <div key={index}>{item.recipeName}</div>)}
-        </p>
-      )}
-    </div>
+  {/* More recipe cards can go here */}
+</div>
+
+
+
   );
 };
 

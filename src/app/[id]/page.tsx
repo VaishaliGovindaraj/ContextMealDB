@@ -8,12 +8,12 @@ const RecipeDetail = async ({ params }: { params: { id: string } }) => {
   const data = await response.json();
 
   const recipeList: RecipeDisplayType[] = data.meals.map((item: any) => {
-    // Get all ingredient keys
+    
     const ingredientKeys = Object.keys(item).filter((key) =>
       key.includes("strIngredient")
     );
 
-    // Collect ingredients + measures
+    
     const all_ingredients: string[] = [];
     for (let i = 0; i < ingredientKeys.length; i++) {
       if (item[ingredientKeys[i]]) {
@@ -45,19 +45,19 @@ const RecipeDetail = async ({ params }: { params: { id: string } }) => {
           key={index}
           className="max-w-3xl mx-auto bg-gray-800 p-6 rounded-xl shadow-lg mb-8"
         >
-          {/* Meal Name */}
+          
           <h3 className="text-xl font-semibold text-white mb-4 text-center">
             {item.mealName}
           </h3>
 
-          {/* Meal Image */}
+          
           <img
             src={item.mealImage}
             alt={item.mealName}
             className="w-full max-w-md mx-auto rounded-lg shadow-md mb-4"
           />
 
-          {/* Category & Region */}
+          
           <p className="text-gray-300 text-center">
             <span className="font-medium">Category:</span> {item.mealCategory}
           </p>
@@ -65,7 +65,7 @@ const RecipeDetail = async ({ params }: { params: { id: string } }) => {
             <span className="font-medium">Region:</span> {item.mealRegion}
           </p>
 
-          {/* Ingredients */}
+          
           <h4 className="text-lg font-semibold text-white mb-2">
             Ingredients:
           </h4>
@@ -75,13 +75,13 @@ const RecipeDetail = async ({ params }: { params: { id: string } }) => {
             ))}
           </ul>
 
-          {/* Instructions */}
+          
           <h4 className="text-lg font-semibold text-white mb-2">
             Instructions:
           </h4>
           <p className="text-gray-200 mb-4">{item.mealInstruction}</p>
 
-          {/* YouTube Video */}
+          
           {item.mealVideo && (
             <div className="aspect-w-16 aspect-h-9">
               <iframe

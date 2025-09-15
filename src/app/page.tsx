@@ -49,10 +49,10 @@ export default function Home() {
   }, [randomeRecipe])
 
   return (
- <div className="flex items-center justify-center  p-3">
+ <div className="flex items-center justify-center ">
   {user && (
     <div className="w-full max-w-6xl text-center">
-      <h2 className="text-2xl font-bold text-gray-800 mb-4">
+      <h2 className="text-2xl font-bold text-gray-800 mb-4 pt-12">
         👋 Welcome to My Recipes, <span className="text-orange-600">{user.name}</span>
       </h2>
 
@@ -60,8 +60,8 @@ export default function Home() {
         🍽️ Top Recipe of the Week
       </h3>
 
-  <div className="flex justify-center w-full">
-  <div className="grid grid-cols-1 gap-6 justify-items-center">
+  <div className="flex justify-center">
+  <div className="grid grid-cols-1 gap-6 justify-items-center sm:w-[1000px] sm:min-w-[850px]">
     {recipeListArray.map((item, index) => (
       <CategoryRecipe key={index} {...item} />
     ))}

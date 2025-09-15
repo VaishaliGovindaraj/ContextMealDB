@@ -8,7 +8,7 @@ const Navigation = () => {
     <Link 
       key={index} 
       href={item.link} 
-      className="text-gray-800 font-medium hover:text-orange-600 transition-colors duration-200"
+      className="text-gray-800 text-2xl font-bold hover:text-orange-600 transition-colors duration-200"
     >
       {item.name}
     </Link>

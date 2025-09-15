@@ -37,7 +37,7 @@ const LogInForm = () => {
             <label htmlFor="password" className="m-2">Enter your password</label>
             <input id="password" placeholder="password" className="m-2 border-2 border-red-500"/>
             </div>
-            <button onClick={handleClick} className="border-2 border-red-500 bg-red-200 max-w-[100] flex justify-center mx-[150px] p-">Log In !</button>
+            <button onClick={handleClick} className="border-2 border-red-500 bg-red-200 max-w-[100] flex justify-center mx-[100px] p-2">Log In !</button>
             </div>
           
             {!userNotFound && <p>User Not found</p>}

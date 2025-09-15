@@ -45,7 +45,7 @@ const CategoryPage = () => {
 
     return (
         <>
-            {/* Favourite Category Heading */}
+            
             {user?.favouriteCategory && (
                 <h2 className="text-xl font-semibold text-center text-amber-950 p-3 mb-6">
                     Current Favourite Category:{" "}
@@ -53,8 +53,8 @@ const CategoryPage = () => {
                 </h2>
             )}
 
-            {/* Category Grid */}
-            <div className="grid grid-cols-1 sm:grid-cols-2 gap-6 mt-6 px-4 max-w-4xl mx-auto w-full majustify-items-center">
+            
+            <div className="grid grid-cols-1 sm:grid-cols-2 gap-6 mt-6 px-4 max-w-[350px] sm:max-w-4xl mx-auto w-full majustify-items-center">
 
                 {selectedCategory.map((item: CategoryType, index: number) => (
                     <div

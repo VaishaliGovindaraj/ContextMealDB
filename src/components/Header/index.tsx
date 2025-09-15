@@ -17,13 +17,13 @@ const Header = () => {
     return (
 
         <header className="shadow-md">
-  <div className="max-w-6xl mx-auto flex flex-col sm:flex-row items-center justify-between p-4">
+  <div className="max-w-6xl mx-auto flex flex-row items-center justify-between p-4">
     
     <div className="flex items-center gap-3">
       <img
         src="/new_logo.png"
         alt="logo"
-        className="w-16 h-16 sm:w-20 sm:h-20 object-contain"
+        className="hidden sm:block sm:w-20 sm:h-20 object-contain"
       />
       <h1 className="text-3xl font-extrabold text-gray-800 tracking-wide">
         My Recipes

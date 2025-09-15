@@ -9,7 +9,7 @@ const ProfilePage =  () => {
   const { user, setUser } = useUserContext() as UserContextType
 
 return (
-  <div className="min-h-screen flex flex-col items-center justify-start p-8">
+  <div className="flex grow flex-col items-center justify-start p-8">
     
     <h2 className="text-3xl font-extrabold mb-6 text-gray-800">
       {user?.name}'s Profile

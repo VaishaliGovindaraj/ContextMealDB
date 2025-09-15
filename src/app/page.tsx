@@ -49,7 +49,7 @@ export default function Home() {
   }, [randomeRecipe])
 
   return (
- <div className="flex items-center justify-center ">
+ <div className="flex grow items-center justify-center ">
   {user && (
     <div className="w-full max-w-6xl text-center">
       <h2 className="text-2xl font-bold text-gray-800 mb-4 pt-12">

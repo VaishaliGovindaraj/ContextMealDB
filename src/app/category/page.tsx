@@ -45,7 +45,7 @@ const CategoryPage = () => {
 
     return (
         <>
-            
+            <div className="grow">
             {user?.favouriteCategory && (
                 <h2 className="text-xl font-semibold text-center text-amber-950 p-3 mb-6">
                     Current Favourite Category:{" "}
@@ -95,6 +95,7 @@ const CategoryPage = () => {
                         </div>
                     </div>
                 ))}
+            </div>
             </div>
         </>
 

@@ -2,17 +2,17 @@ import { UserType } from "@/utils/types";
 
 export const UserArray:UserType[] = [
     {
-        name: "Tobbe",
+        name: "User1",
         favouriteCategory: "chicken",
         favouriteRecipes: []
     },
     {
-        name: "Bobbe",
+        name: "User2",
         favouriteCategory: null,
         favouriteRecipes: []
     },
     {
-        name: "Robbe",
+        name: "User3",
         favouriteCategory: "Beef",
         favouriteRecipes: []
     },

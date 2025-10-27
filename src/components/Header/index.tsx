@@ -17,16 +17,16 @@ const Header = () => {
     return (
 
         <header className="shadow-md">
-  <div className="max-w-6xl mx-auto flex flex-row items-center justify-between p-4">
+  <div className="max-w-6xl mx-auto flex flex-row items-center justify-center p-4">
     
     <div className="flex items-center gap-3">
       <img
         src="/new_logo.png"
         alt="logo"
-        className="hidden sm:block sm:w-20 sm:h-20 object-contain"
+        className="hidden  mr-20 sm:block sm:w-20 sm:h-20 object-contain"
       />
-      <h1 className="text-3xl font-extrabold text-gray-800 tracking-wide">
-        My Recipes
+      <h1 className="text-3xl mr-20 font-extrabold text-gray-800 tracking-wide">
+        FlavorVault
       </h1>
     </div>
 

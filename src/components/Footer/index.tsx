@@ -6,7 +6,7 @@ const Footer = () => {
       <div className="max-w-6xl mx-auto px-6 py-10 flex justify-evenly ">
 
         <div className="space-y-2">
-          <h4 className="text-lg font-bold text-white">RecipeHub</h4>
+          <h4 className="text-lg font-bold text-white">Flavor Vault</h4>
           <p className="text-sm">
             Delicious Recipes. Save your favourites. Share your flavors.
           </p>
@@ -25,7 +25,7 @@ const Footer = () => {
 
       <div className="border-t border-gray-700 mt-10 py-4">
         <div className="max-w-6xl mx-auto px-6 text-center text-xs text-gray-500">
-          &copy; {new Date().getFullYear()} RecipeHub. All rights reserved.
+          &copy; {new Date().getFullYear()} Flavor Vault. All rights reserved.
         </div>
       </div>
     </footer>
